@@ -1,0 +1,7 @@
+export const INPUT ='bookingForm/INPUT'
+export const DESTINATIONFROM ='bookingForm/destinationForm'
+export const DESTINATIONTO ='bookingForm/destinationTo'
+export const JOURNEYDATE ='bookingForm/journeyDate'
+export const GUESTS ='bookingForm/guests'
+export const CLASS ='bookingForm/class'
+export const BOOK ='bookingForm/book'
