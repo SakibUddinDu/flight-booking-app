@@ -1,43 +1,28 @@
-import { BOOK, DESTINATIONFROM, INPUT } from "./actionTypes";
+import { ADD_BOOKING, DELETE_BOOKING } from "./actionTypes";
 
-const initialState ={
-    bookings:[{
-            from:"",
-            to:"",
-            date:"",
-            guests:0,
-            ticketClass:"",
-    }]
-}
+const initialState = [];
 
-const bookingFormReducer = (state= initialState, action) =>{
-    switch (action.type) {
-       
-        case INPUT:
-            // console.log(action.payload);
-            return {
-               ...state,
-               [action.payload.name]: action.payload.value,
-            //    from : action.payload,
-              
-            }
-        case BOOK:
-            console.log(action.payload);
-            return {
-               ...state,
-               bookings: action.payload,
-            //    from : action.payload,
-              
-            }
-            
-        // case DESTINATIONFROM:
-        //     return {
-        //        ...state,
-        //        [action.payload.name]:action.payload.value,
-        //     }    
-        default:
-            return state;
-    }
+
+const nextBookingId =(bookings) =>{
+    const maxId= bookings.reduce((maxId, booking)=>Math.max(booking.id, maxId), -1)//-1+1 =0 -0 o jate id hishebe aste pare
+    return maxId+1;
 }
+const bookingFormReducer = (state = initialState, action) => {
+  switch (action.type) {
+    case ADD_BOOKING:
+        console.log(action.payload)
+        
+      if (state.length >= 3) {
+        return state;
+      }
+      return [...state, { id: nextBookingId(state), ...action.payload }];
+    case DELETE_BOOKING:
+        console.log(state)
+      return state.filter((booking) => booking.id !== action.payload);
+    default:
+      return state;
+  }
+};
 
 export default bookingFormReducer;
+
